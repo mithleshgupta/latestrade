@@ -8,6 +8,20 @@ function App() {
   const [marketData, setMarketData] = useState([]);
 
   useEffect(() => {
+    const fetchMarketData = async () => {
+      try {
+        const response = await fetch("https://tradebackend-9mv6.onrender.com/market-data");
+        const data = await response.json();
+        setMarketData(data);
+      } catch (error) {
+        console.error("Error fetching market data:", error);
+      }
+    };
+
+    fetchMarketData();
+  }, []);
+
+  useEffect(() => {
     socket.on("market-update", (data) => {
       setMarketData(data);
     });
@@ -59,7 +73,6 @@ function App() {
                 <td>{stock.prevClose.toFixed(2)}</td>
                 <td>{stock.volume}</td>
               </tr>
-
             );
           })}
         </tbody>
