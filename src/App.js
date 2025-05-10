@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import "./App.css";
 
-const socket = io("https://tradebackend-9mv6.onrender.com");
+const socket = io("https://tradebackend-w4rv.onrender.com");
 
 function App() {
   const [marketData, setMarketData] = useState([]);
@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     const fetchMarketData = async () => {
       try {
-        const response = await fetch("https://tradebackend-9mv6.onrender.com/market-data");
+        const response = await fetch("https://tradebackend-w4rv.onrender.com/market-data");
         const data = await response.json();
         setMarketData(data);
       } catch (error) {
